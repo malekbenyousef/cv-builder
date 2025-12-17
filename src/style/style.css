@@ -1,61 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap');
 
-.input{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 30px;
-}
-.output{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 24px;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Open Sans', sans-serif; background: #e9ecef; height: 100vh; overflow: hidden; }
 
-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-input{
-  font-family: inherit;
-  border: 0;
-  border-bottom: 2px solid lightgrey;
-  outline: 0;
-  font-size: 1.3rem;
-  padding: 7px 0;
-  background: transparent;
-  margin-bottom: 12px;
-}
-input:focus{
+.app-container { display: flex; height: 100vh; }
 
-  border-bottom: 2px solid black;
+/* --- EDITOR SIDEBAR (LEFT) --- */
+.editor-section {
+  width: 440px;
+  background: white;
+  padding: 30px;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.05);
 }
 
-p{
-  font-family: inherit;
-  font-size: 1.5rem;
+.editor-heading { font-size: 1.2rem; color: #1f2937; border-bottom: 2px solid #3b82f6; padding-bottom: 5px; margin-bottom: 10px;}
+.group-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.group-header h3 { font-size: 1.1rem; color: #374151; }
+
+/* Inputs */
+input, .textarea-field {
+  width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px;
+  margin-bottom: 10px; font-family: inherit; font-size: 0.95rem;
 }
-label{
-  font-size: 1.3rem;
-  color: black;
-}
-button{
-  background-color: #fff;
-  border-radius: 24px;
-  border-style: none;
-  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
-  color: #3c4043;
-  padding: 2px 24px;
-  height: 40px;
-  font-size: 1.2rem;
-  font-weight: bold;
+input:focus, .textarea-field:focus { outline: 2px solid #3b82f6; border-color: transparent; }
+
+/* Buttons */
+.editor-toolbar { display: flex; gap: 10px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+.load-btn { flex: 1; background: white; border: 1px solid #ccc; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.load-btn:hover { background: #f3f4f6; }
+.clear-btn { background: white; border: 1px solid #ef4444; color: #ef4444; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+.clear-btn:hover { background: #fef2f2; }
+
+.add-btn { background: #3b82f6; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+.add-btn:hover { background: #2563eb; }
+
+.delete-btn { background: #ef4444; color: white; border: none; padding: 8px; border-radius: 6px; cursor: pointer; width: 100%; margin-top: 5px;}
+.delete-btn:hover { background: #dc2626; }
+
+.download-btn { width: 100%; background: #10b981; color: white; padding: 12px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+.download-btn:hover { background: #059669; }
+
+/* Accordion */
+.section-box { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; background: #f9fafb; overflow: hidden; }
+.section-header { padding: 12px 15px; background: white; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #374151; }
+.section-header:hover { background: #f3f4f6; }
+.section-content { padding: 15px; border-top: 1px solid #e5e7eb; }
+
+/* --- PREVIEW SECTION (RIGHT) --- */
+.preview-section { flex: 1; background: #525659; padding: 40px; overflow-y: auto; display: flex; justify-content: center; }
+
+.resume-paper {
+  background: white; width: 210mm; min-height: 297mm; padding: 20mm;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3); color: #333;
 }
 
-button:hover {
-  background: #F6F9FE;
-  color: #174ea6;
+/* Resume Typography */
+.resume-header { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #333; padding-bottom: 15px;}
+.resume-header h1 { font-family: 'Merriweather', serif; font-size: 2.2rem; margin-bottom: 8px; color: #111; }
+.contact-info { font-size: 0.9rem; color: #444; }
+.contact-info span { margin: 0 5px; }
+
+.section-title {
+  font-family: 'Merriweather', serif; font-size: 1.1rem; text-transform: uppercase;
+  letter-spacing: 1px; color: #3b82f6; margin: 20px 0 15px 0; font-weight: 700;
 }
 
+.entry { margin-bottom: 15px; }
+.entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+.entry-title { font-weight: 700; font-size: 1.05rem; }
+.entry-meta { font-size: 0.9rem; color: #666; font-style: italic; }
+.entry-subheader { font-weight: 600; font-size: 0.95rem; color: #444; margin-bottom: 4px; }
+.entry-details { font-size: 0.9rem; line-height: 1.5; color: #333; white-space: pre-wrap; margin-top: 4px;}
+
+/* --- PRINT / PDF EXPORT CONFIGURATION --- */
+@media print {
+  /* Hide interface elements */
+  .editor-section, .add-btn, .delete-btn, .download-btn, button, .section-box { display: none !important; }
+  
+  /* Reset page properties */
+  body { background: white; height: auto; overflow: visible; }
+  .app-container { display: block; height: auto; }
+  .preview-section { background: white; padding: 0; margin: 0; overflow: visible; display: block; }
+  
+  .resume-paper {
+    box-shadow: none; width: 100%; margin: 0; padding: 0; min-height: auto;
+  }
+  
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  @page { margin: 10mm; }
+}
